@@ -12,7 +12,7 @@ def encrypt(payload):
 
 def brute_force():
     flag = ""
-    bits_to_recover = num_bytes_to_recover - 1 # 0-indexed
+    bits_to_recover = num_bytes_to_recover * 8 - 1 # 0-indexed
     alphabets = '_'+'@'+'}'+"{"+string.digits+string.ascii_lowercase+string.ascii_uppercase
     
     while(True):
@@ -24,7 +24,8 @@ def brute_force():
             trial = encrypt((payload + flag + a).encode().hex())  
             print(a, " ", end = '')
 
-            if(trial[80:160] == target[80:160]):
+            block_start = 8 * num_bytes_to_recover
+            if(trial[block_start:block_start*2] == target[block_start:block_start*2]):
                 flag += a 
                 print(flag)
                 break 
