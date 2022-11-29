@@ -11,16 +11,13 @@ def pt_add(P, Q, p):
     zero = (0,0)
     # Check if P or Q = zero
     if P == zero:
-        print("P is the point at infinity")
         return Q 
     if Q == zero:
-        print("Q is the point at infinity")
         return P 
     # Check if P = -Q
     x1,y1 = P
     x2,y2 = Q
     if x1 == x2 and y1 == (-y2 % p):
-        print("P + Q is the point at infinity")
         return zero
     # Check if P = Q or P /= Q, then use formulas for point addition
     lab = 0
